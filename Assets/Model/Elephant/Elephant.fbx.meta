@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: 816fe9f8827345641a242d5e605ebf9b
+timeCreated: 1526935780
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: All_Ctrl
+    100002: Armature
+    100004: Back_Leg_Ctrl_L
+    100006: Back_Leg_Ctrl_L_end
+    100008: Back_Leg_Ctrl_R
+    100010: Back_Leg_Ctrl_R_end
+    100012: Back_Leg_L
+    100014: Back_Leg_L.001
+    100016: Back_Leg_L.002
+    100018: Back_Leg_L.002_end
+    100020: Back_Leg_R
+    100022: Back_Leg_R.001
+    100024: Back_Leg_R.002
+    100026: Back_Leg_R.002_end
+    100028: Body
+    100030: Body2
+    100032: ear
+    100034: //RootNode
+    100036: elephant
+    100038: Eye_L
+    100040: Eye_L_end
+    100042: Eye_R
+    100044: Eye_R_end
+    100046: Front_Leg_Ctrl_L
+    100048: Front_Leg_Ctrl_L_end
+    100050: Front_Leg_Ctrl_R
+    100052: Front_Leg_Ctrl_R_end
+    100054: Front_Leg_L
+    100056: Front_Leg_L.001
+    100058: Front_Leg_L.002
+    100060: Front_Leg_L.002_end
+    100062: Front_Leg_R
+    100064: Front_Leg_R.001
+    100066: Front_Leg_R.002
+    100068: Front_Leg_R.002_end
+    100070: Head
+    100072: Horn
+    100074: Noze
+    100076: Noze.001
+    100078: Noze.002
+    100080: Noze.003
+    100082: Noze.003_end
+    100084: Noze_Ctrl
+    100086: Noze_Ctrl_end
+    100088: Tail
+    100090: Tail.001
+    100092: Tail.002
+    100094: Tail.002_end
+    100096: Tail_Ctrl
+    100098: Tail_Ctrl_end
+    400000: All_Ctrl
+    400002: Armature
+    400004: Back_Leg_Ctrl_L
+    400006: Back_Leg_Ctrl_L_end
+    400008: Back_Leg_Ctrl_R
+    400010: Back_Leg_Ctrl_R_end
+    400012: Back_Leg_L
+    400014: Back_Leg_L.001
+    400016: Back_Leg_L.002
+    400018: Back_Leg_L.002_end
+    400020: Back_Leg_R
+    400022: Back_Leg_R.001
+    400024: Back_Leg_R.002
+    400026: Back_Leg_R.002_end
+    400028: Body
+    400030: Body2
+    400032: ear
+    400034: //RootNode
+    400036: elephant
+    400038: Eye_L
+    400040: Eye_L_end
+    400042: Eye_R
+    400044: Eye_R_end
+    400046: Front_Leg_Ctrl_L
+    400048: Front_Leg_Ctrl_L_end
+    400050: Front_Leg_Ctrl_R
+    400052: Front_Leg_Ctrl_R_end
+    400054: Front_Leg_L
+    400056: Front_Leg_L.001
+    400058: Front_Leg_L.002
+    400060: Front_Leg_L.002_end
+    400062: Front_Leg_R
+    400064: Front_Leg_R.001
+    400066: Front_Leg_R.002
+    400068: Front_Leg_R.002_end
+    400070: Head
+    400072: Horn
+    400074: Noze
+    400076: Noze.001
+    400078: Noze.002
+    400080: Noze.003
+    400082: Noze.003_end
+    400084: Noze_Ctrl
+    400086: Noze_Ctrl_end
+    400088: Tail
+    400090: Tail.001
+    400092: Tail.002
+    400094: Tail.002_end
+    400096: Tail_Ctrl
+    400098: Tail_Ctrl_end
+    4300000: elephant
+    4300002: Horn
+    4300004: ear
+    7400000: Armature|Attack
+    7400002: Armature|SP
+    7400004: Armature|Wait
+    7400006: Armature|Walk
+    7400008: Horn|Wait
+    9500000: //RootNode
+    13700000: ear
+    13700002: elephant
+    13700004: Horn
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "FantasyPandemic_ver2.2_ForWEB.data.unityweb",
+"asmCodeUrl": "FantasyPandemic_ver2.2_ForWEB.asm.code.unityweb",
+"asmMemoryUrl": "FantasyPandemic_ver2.2_ForWEB.asm.memory.unityweb",
+"asmFrameworkUrl": "FantasyPandemic_ver2.2_ForWEB.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

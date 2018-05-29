@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test", "New TPS Test.csproj", "{D2CF1983-9CDF-C628-732F-962ED4EF17BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test.Plugins", "New TPS Test.Plugins.csproj", "{7769BE77-F035-EA5C-46A1-7FB6C9D87555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test.Editor.Plugins", "New TPS Test.Editor.Plugins.csproj", "{F508F00F-694A-2224-3508-7D00B01B5865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2CF1983-9CDF-C628-732F-962ED4EF17BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2CF1983-9CDF-C628-732F-962ED4EF17BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2CF1983-9CDF-C628-732F-962ED4EF17BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2CF1983-9CDF-C628-732F-962ED4EF17BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F508F00F-694A-2224-3508-7D00B01B5865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F508F00F-694A-2224-3508-7D00B01B5865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F508F00F-694A-2224-3508-7D00B01B5865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F508F00F-694A-2224-3508-7D00B01B5865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
