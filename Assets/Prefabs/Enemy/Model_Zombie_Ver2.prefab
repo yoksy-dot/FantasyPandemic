@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961276833649640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.7, y: 1.81, z: -24.7}
+  m_LocalPosition: {x: -39.88, y: 1.81, z: -24.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4084149507288878}
@@ -276,6 +276,8 @@ MonoBehaviour:
   SPShootPoint: {fileID: 0}
   AnimCtrl:
   - {fileID: 95376892217882608}
+  _particleSystem: {fileID: 0}
+  MakeNum: 0a00000001000000
   _seach: {fileID: 114884829441032006}
   useLook: 1
   Moving: 3
@@ -358,7 +360,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 459853cadac53284da43282119cec0d8, type: 2}
+  - {fileID: 2100000, guid: 52985a996a956fe4abd47ac17ba4df17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

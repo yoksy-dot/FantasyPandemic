@@ -28,5 +28,7 @@ public class Bullet_Bomb : BulletClass
         _Bsys.MAX_EXP = MaxExpansion;
         _Bsys.ATK = BombAtk;
         _Bsys.ATACKER = Attaker;
-    }
+		if (_particleSystem)
+			_particleSystem.Stop();
+	}
 }

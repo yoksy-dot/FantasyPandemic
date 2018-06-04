@@ -20,6 +20,7 @@ public class BattleSystem : MonoBehaviour
 	private int[] Current_O = new int[10];
 
 	private BattleObject b_obj;
+	//private BulletClass bullet_obj;
 
 	//そのHPリスト
 	private int[] HPArray = new int[100];
@@ -35,9 +36,18 @@ public class BattleSystem : MonoBehaviour
 			for (int j = 0; j < ObjNum; j++)//とりま10
 			{
 				ObjArray[i,j] = Instantiate(ObjKind[i], transform) as GameObject;
-				b_obj = ObjArray[i, j].GetComponent<BattleObject>();
-				Pararray[i,j] = b_obj.PARAMETER;//パラメータ
-				b_obj.ID = 10 * i + j;//ID振る
+				if (ObjArray[i, j].GetComponent<BattleObject>())
+				{
+					b_obj = ObjArray[i, j].GetComponent<BattleObject>();
+					Pararray[i, j] = b_obj.PARAMETER;//パラメータ
+					b_obj.ID = 10 * i + j;//ID振る
+				}
+				//if (ObjArray[i, j].GetComponent<BulletClass>())
+				//{
+				//	bullet_obj = ObjArray[i, j].GetComponent<BulletClass>();
+				//	bullet_obj.SYS = this;
+
+				//}
 				ObjArray[i,j].SetActive(false);
 			}
 		}
@@ -69,7 +79,7 @@ public class BattleSystem : MonoBehaviour
 
 	//使用するオブジェクトID,Position,Rotetion
 	//オブジェクトをその場所に呼び出す関数
-	public GameObject MakeObject(int prefabsID,Vector3 pos ,Quaternion rot)
+	public GameObject MakeObject(int prefabsID,Vector3 pos ,Quaternion rot,string Rename)
 	{
 		sb.Append(ObjArray[prefabsID, Current_O[prefabsID]].name);
 		if (transform.Find(sb.ToString()) != null)
@@ -78,7 +88,7 @@ public class BattleSystem : MonoBehaviour
 		ObjArray[prefabsID,Current_O[prefabsID]].transform.position = pos;
 		//ObjArray[prefabsID,Current_O[prefabsID]].transform.localRotation = rot;
 		ObjArray[prefabsID,Current_O[prefabsID]].SetActive(true);
-		sb.Append("Enemy_");
+		sb.Append(Rename);
 		sb.Append(prefabsID);
 		sb.Append(":" );
 		sb.Append(Current_O[prefabsID]);

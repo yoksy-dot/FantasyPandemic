@@ -15,7 +15,7 @@ public class BattleObject : MonoBehaviour
 	protected BattleSystem _battleSystem;
 
 	[SerializeField, Tooltip("撃破条件の物")]
-	private bool Important;
+	protected bool Important;
 
 	public enum Group
 	{
@@ -90,8 +90,8 @@ public class BattleObject : MonoBehaviour
 	protected float timer = 0;
 
 	//事前生産
-	//[Tooltip("種類")]
-	//protected GameObject[] BulletKind = new GameObject[2];
+	[SerializeField, Tooltip("弾の生産数")]
+	protected int[] MakeNum = new int[2];
 	protected GameObject[][] BulletArray = new GameObject[2][];
 	protected int[] Current_B = new int[2];
 	protected StringBuilder sb2 = new StringBuilder();
@@ -137,7 +137,7 @@ public class BattleObject : MonoBehaviour
 		//事前生産
 		if (Bullet)
 		{
-			BulletArray[0] = new GameObject[60];
+			BulletArray[0] = new GameObject[MakeNum[0]];
 			//弾
 			for (int j = 0; j < BulletArray[0].Length; j++)//とりま10
 			{
@@ -145,6 +145,7 @@ public class BattleObject : MonoBehaviour
 				BulletClass b_bullet = BulletArray[0][j].GetComponent<BulletClass>();
 				b_bullet.ATTACKER = this;
 				b_bullet.POWER = _parameter.DISTANCE;
+				b_bullet.SYS = _battleSystem;
 				if (SendHP) b_bullet.BUFF1 = SendHP;
 				if (SendO) b_bullet.BUFF2 = SendO;
 				//ミサイルはしばらく封印
@@ -157,7 +158,7 @@ public class BattleObject : MonoBehaviour
 		}
 		if (SPBullet)
 		{
-			BulletArray[1] = new GameObject[11];
+			BulletArray[1] = new GameObject[MakeNum[1]];
 			//弾
 			for (int j = 0; j < BulletArray[1].Length; j++)//とりま10
 			{
@@ -165,6 +166,7 @@ public class BattleObject : MonoBehaviour
 				BulletClass b_bullet = BulletArray[1][j].GetComponent<BulletClass>();
 				b_bullet.ATTACKER = this;
 				b_bullet.POWER = _parameter.DISTANCE;
+				b_bullet.SYS = _battleSystem;
 				if (SendHP) b_bullet.BUFF1 = SendHP;
 				if (SendO) b_bullet.BUFF2 = SendO;
 				//if (BulletArray[1][j].GetComponent<Bullet_Missile>() && TargetObj != null)

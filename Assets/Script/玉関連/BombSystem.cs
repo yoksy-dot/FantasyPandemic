@@ -38,11 +38,17 @@ public class BombSystem : MonoBehaviour
     private float timer = 0;
     private Vector3 nowScale;
 
+	[SerializeField]
+	private ParticleSystem _particleSystem;
+
     // Use this for initialization
     void Start()
     {
         transform.localScale = nowScale = new Vector3(0.1f, 0.1f, 0.1f);
-    }
+		//if (_particleSystem)
+		//	_particleSystem.transform.localPosition = transform.localPosition;
+
+	}
 
     // Update is called once per frame
     void Update()

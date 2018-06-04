@@ -54,7 +54,7 @@ public class BuildObject : BattleObject
 	void Maker(int id)
 	{
 		Vector2 xy = Random.insideUnitCircle * MakeDistance;
-		GameObject ene = _battleSystem.MakeObject(id, new Vector3(xy.x + transform.position.x, transform.position.y, xy.y + transform.position.z), transform.rotation);
+		GameObject ene = _battleSystem.MakeObject(id, new Vector3(xy.x + transform.position.x, transform.position.y, xy.y + transform.position.z), transform.rotation,"Enemy_");
 		//GameObject ene = Instantiate(Prefabs, new Vector3(xy.x + transform.position.x, transform.position.y, xy.y + transform.position.z), transform.rotation);
 	}
 }

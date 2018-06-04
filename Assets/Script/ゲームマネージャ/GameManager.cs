@@ -155,7 +155,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
 		//SceneManager.activeSceneChanged += OnActiveSceneChanged;
-		Cursor.lockState = CursorLockMode.Confined;
+		//Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	bool aaa = true;
@@ -455,6 +455,7 @@ public class GameManager : Singleton<GameManager>
 		{
 			case 0://タイトル兼メニュー画面
 				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
 				_CurrentState = GameState.Menu;
 				ElapsedTime = 0;
 				FinTime = 0;
@@ -464,6 +465,7 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case 1://テストステージ
 				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
 				_CurrentState = GameState.BATTLE;
 				SceneManager.LoadScene("Test");
 				WinnNum = 8;
@@ -473,6 +475,7 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case 2://実用ステージ
 				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
 				_CurrentState = GameState.BREAK;
 				ElapsedTime = 0;
 				WinnNum = 1;
@@ -481,6 +484,7 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case 3://リザルト
 				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
 				_CurrentState = GameState.Result;
 				FinTime = ElapsedTime;
 				ElapsedTime = 0;
@@ -488,6 +492,7 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case 4://ストーリー
 				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
 				_CurrentState = GameState.BREAK;
 				ElapsedTime = 0;
 				WinnNum = 1;
@@ -496,6 +501,7 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case 5://ストーリー2
 				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
 				_CurrentState = GameState.BREAK;
 				ElapsedTime = 0;
 				WinnNum = 1;

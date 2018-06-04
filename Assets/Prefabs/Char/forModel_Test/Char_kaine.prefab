@@ -21016,12 +21016,13 @@ MonoBehaviour:
   Bullet: {fileID: 1253152643451022, guid: 8ec5d640f28a08040a8d624a1dbb38e3, type: 2}
   ShootPoint: {fileID: 4008765994902958}
   IsRandomShoot: 0
-  SPBullet: {fileID: 1951701422071336, guid: 465edb7fe232ea6449070a52f5d0020b, type: 2}
+  SPBullet: {fileID: 1748410245995990, guid: 7b044e33c0617354e83f09d7e2ce828a, type: 2}
   SPShootPoint: {fileID: 4008765994902958}
   AnimCtrl:
   - {fileID: 95249440387183758}
   - {fileID: 95892631905380276}
   _particleSystem: {fileID: 198864804349064822}
+  MakeNum: 3c00000014000000
   cameraRotateLimit: 30
   cameraRotForward: 1
   rotateSpeed: 50

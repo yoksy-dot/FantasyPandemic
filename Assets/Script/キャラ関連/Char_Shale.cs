@@ -23,6 +23,9 @@ public class Char_Shale : Player_FlyingType
 	[SerializeField, Tooltip("追加分")]
 	protected Transform SPShootPoint2;
 
+	[SerializeField]
+	private TrailRenderer T_r1, T_r2;
+
 	protected override void PlayerMove()
 	{
 		float F_Flag = 0;
@@ -30,6 +33,16 @@ public class Char_Shale : Player_FlyingType
 		if (cCon.isGrounded/*GroundCheck()*/)
 		{
 			AnimCtrl[0].SetBool("Jump", false);
+			if(T_r1.startWidth < 0)
+			{
+				T_r1.startWidth -= 0.01f;
+				T_r2.startWidth -= 0.01f;
+			}
+			else if(T_r1.startWidth >= 0)
+			{
+				T_r1.startWidth = T_r2.startWidth = 0;
+			}
+			
 			velocity = Vector3.zero;
 			Vec_Y = 0;
 			velocity = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")).normalized;
@@ -45,7 +58,6 @@ public class Char_Shale : Player_FlyingType
 				}
 
 			}
-
 		}
 		else//つまり空中
 		{
@@ -53,6 +65,9 @@ public class Char_Shale : Player_FlyingType
 			velocity = Vector3.zero;
 			velocity = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")).normalized;
 			velocity *= _parameter.SPEED + BuffMathFunc(Buff_Others.Kind.SPEED);
+
+			T_r1.startWidth = 0.1f;
+			T_r2.startWidth = 0.1f;
 
 			if (_parameter.SPECIAL >= 1 && Input.GetButton("Jump"))
 			{

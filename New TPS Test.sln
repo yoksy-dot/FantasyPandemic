@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test", "New TPS Test.csproj", "{D2CF1983-9CDF-C628-732F-962ED4EF17BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test.Plugins", "New TPS Test.Plugins.csproj", "{7769BE77-F035-EA5C-46A1-7FB6C9D87555}"

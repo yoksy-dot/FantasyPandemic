@@ -42,17 +42,26 @@ public class BulletClass : MonoBehaviour
         set { buff2 = value; }
     }
 
+	protected BattleSystem _battle;
+	public BattleSystem SYS
+	{
+		set { _battle = value; }
+	}
+
 
     //消滅時間
     [SerializeField]
     protected float BreakTime;
     protected float timer;
 
-	//[SerializeField]
-	//protected bool UseRay;
-	//protected Ray ray;
-	//protected RaycastHit hit;
-	//public LayerMask mask;
+	[SerializeField]
+	protected ParticleSystem _particleSystem;
+
+	//void Awake()
+	//{
+	//	if (_battle == null)
+	//		_battle = GameObject.Find("ObjectCtrl").GetComponent<BattleSystem>();
+	//}
 
 	protected virtual void OnEnable()
 	{
@@ -61,7 +70,8 @@ public class BulletClass : MonoBehaviour
 		rig.AddForce(FlyPower * transform.forward, ForceMode.Impulse);
 		timer = 0;
 
-		//ray = new Ray(transform.position, transform.forward);
+		if (_particleSystem)
+			_particleSystem.Stop();
 	}
 
     // Update is called once per frame
@@ -83,9 +93,9 @@ public class BulletClass : MonoBehaviour
         if (coll.gameObject.GetComponent<BattleObject>() != null)
         {
 			OnDefeated(coll.gameObject.GetComponent<BattleObject>());
+			_battle.MakeObject(1, coll.gameObject.transform.position, coll.gameObject.transform.rotation, "DamegedEffect");
 
-
-            DestroyFunc();
+			DestroyFunc();
 			gameObject.SetActive(false);
 			rig.velocity = Vector3.zero;
 			rig.angularVelocity = Vector3.zero;
@@ -102,8 +112,9 @@ public class BulletClass : MonoBehaviour
     //消滅前に行う処理
     protected virtual void DestroyFunc()
     {
-
-    }
+		if (_particleSystem)
+			_particleSystem.Stop();
+	}
 
 	//イベント
 	protected void OnDefeated(BattleObject ukemi)

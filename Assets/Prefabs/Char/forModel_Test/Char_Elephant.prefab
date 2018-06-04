@@ -1823,11 +1823,14 @@ MonoBehaviour:
   AnimCtrl:
   - {fileID: 95074311114509200}
   _particleSystem: {fileID: 0}
+  MakeNum: 3c0000000b000000
   cameraRotateLimit: 30
   cameraRotForward: 1
   rotateSpeed: 50
   mouseSpeed: 4
   zoomSpeed: 4
+  zoomMin: 0.5
+  zoomMax: -5
   CanMoveGun: 1
   GunTarget: {fileID: 1946932821563346}
   ResurrectionTime: 3

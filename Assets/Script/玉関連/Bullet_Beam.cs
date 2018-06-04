@@ -69,6 +69,7 @@ public class Bullet_Beam : BulletClass
 				//DamageCalculate dam = new DamageCalculate(Attaker, BulletATK, buff1, buff2);
 				//hit.collider.gameObject.GetComponent<BattleObject>().ReceiveAttack(dam);
 				OnDefeated(hit.collider.gameObject.GetComponent<BattleObject>());
+				_battle.MakeObject(1, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation, "DamegedEffect");
 				StopFlag = true;
 			}
 			else

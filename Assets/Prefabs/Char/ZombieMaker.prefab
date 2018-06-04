@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1548415274881326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.97, y: 1.94, z: 23}
+  m_LocalPosition: {x: 0.5, y: 1.94, z: -29.4}
   m_LocalScale: {x: 5, y: 2, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c099c0e19d73e446b4388cb9bd8b5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   Important: 0
   _Group: 2
   Bullet: {fileID: 0}
@@ -107,11 +108,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  UseMaker: 0
-  Prefabs: {fileID: 1237397358744222, guid: 149745fd4d93f9848bed6f22dbb49c62, type: 2}
-  MakeDistance: 2
-  Interval: 1
-  DebugMakeNum: 10
+  _particleSystem: {fileID: 0}
+  MakeNum: 
+  UseMaker: 1
+  makeID: 0
+  Prefabs: {fileID: 1961276833649640, guid: 904f881b2b90c8740b4960da499beaa0, type: 2}
+  MakeDistance: 1
+  Interval: 5
+  DebugMakeNum: 15
 --- !u!114 &114888673916311068
 MonoBehaviour:
   m_ObjectHideFlags: 1
