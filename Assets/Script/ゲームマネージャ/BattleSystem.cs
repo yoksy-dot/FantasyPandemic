@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 {
 
 	[Tooltip("シーン内のMaxオブジェクト数")]
-	private static int ObjNum = 40;
+	private static int ObjNum = 100;
 	//初期配置以外のバトルオブジェクトのリスト
 	[Tooltip("種類")]
 	public GameObject[] ObjKind = new GameObject[10];

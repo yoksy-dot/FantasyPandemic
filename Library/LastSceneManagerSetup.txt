@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Secne/Test.unity
+- path: Assets/Secne/Menu.unity
   isLoaded: 1
   isActive: 1

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -50,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 	//メニュー関連
 	private GameObject Title;
 	private GameObject Menu;
-	private Button[] StageBuuton = new Button[3];
+	//private Button[] StageBuuton = new Button[3];
 	private Text ChoiseText;
 
 
@@ -62,9 +63,7 @@ public class GameManager : Singleton<GameManager>
     public enum GameState
     {
         Menu,
-		BREAK,
-		BATTLE,
-		DIFFENCE,
+		InGame,
 		Result,
         End,
     };
@@ -128,6 +127,8 @@ public class GameManager : Singleton<GameManager>
 		get { return killImportant; }
 	}
 
+	public QuestCtrl _Quest;//まずい気がする
+
 	//勝ち負けの判定
 	private bool IsWinn;
 	public bool WIN
@@ -142,8 +143,15 @@ public class GameManager : Singleton<GameManager>
 	private Slider _sli;
 	public float RE_timer = 0;
 	//private BattleStageSystem B_sys;
+	private GameObject SubCamera;
 
-    public override void Awake()
+	private GameObject MovePanel;
+	private Text KillText, KillText2,tex;
+
+	private StringBuilder sb = new StringBuilder();
+
+
+	public override void Awake()
     {
         base.Awake();
         if (GameObject.Find("ゲームマネージャー"))
@@ -183,15 +191,15 @@ public class GameManager : Singleton<GameManager>
 					StartMenu();
 					break;
 
-				case GameState.BREAK:
+				case GameState.InGame:
 					StartInGame();
 					break;
-				case GameState.BATTLE:
-					StartInGame();
-					break;
-				case GameState.DIFFENCE:
-					StartInGame();
-					break;
+				//case GameState.BATTLE:
+				//	StartInGame();
+				//	break;
+				//case GameState.DIFFENCE:
+				//	StartInGame();
+				//	break;
 				case GameState.End:
 					//updateEnd();
 					break;
@@ -207,15 +215,15 @@ public class GameManager : Singleton<GameManager>
 
 				break;
 
-            case GameState.BREAK:
-                //updateInGame();
-                break;
-			case GameState.BATTLE:
+            case GameState.InGame:
+				UpdateInGame();
+				break;
+			//case GameState.BATTLE:
 				
-				break;
-			case GameState.DIFFENCE:
-				//updateInGame();
-				break;
+			//	break;
+			//case GameState.DIFFENCE:
+			//	//updateInGame();
+			//	break;
 			case GameState.End:
                 //updateEnd();
                 break;
@@ -279,14 +287,14 @@ public class GameManager : Singleton<GameManager>
 		trigger5.triggers.Add(entry5);
 		//ステージ
 		//没ステ
-		GameObject Stage0 = Menu.transform.Find("S_Button0").gameObject;
-		EventTrigger trigger_S0 = Stage0.GetComponent<EventTrigger>();
-		EventTrigger.Entry entryS0 = new EventTrigger.Entry
-		{
-			eventID = EventTriggerType.PointerClick
-		};
-		entryS0.callback.AddListener((data) => { SceneChengeManager(2); });
-		trigger_S0.triggers.Add(entryS0);
+		//GameObject Stage0 = Menu.transform.Find("S_Button0").gameObject;
+		//EventTrigger trigger_S0 = Stage0.GetComponent<EventTrigger>();
+		//EventTrigger.Entry entryS0 = new EventTrigger.Entry
+		//{
+		//	eventID = EventTriggerType.PointerClick
+		//};
+		//entryS0.callback.AddListener((data) => { SceneChengeManager(2); });
+		//trigger_S0.triggers.Add(entryS0);
 		//Test
 		GameObject Stage1 = Menu.transform.Find("S_Button1").gameObject;
 		EventTrigger trigger_S1 = Stage1.GetComponent<EventTrigger>();
@@ -320,8 +328,8 @@ public class GameManager : Singleton<GameManager>
 		ChoiseText = Menu.transform.Find("ChoiseText").GetComponent<Text>();
 		//ChoiseText.text = "Player:" + PlayerPrefabs[PrefabNum].name;
 
-		StageBuuton[0] = Stage0.GetComponent<Button>();
-		StageBuuton[1] = Stage1.GetComponent<Button>();
+		//StageBuuton[0] = Stage0.GetComponent<Button>();
+		//StageBuuton[1] = Stage1.GetComponent<Button>();
 
 		Menu.SetActive(false);
 
@@ -368,18 +376,14 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>
 	private void UpdateInGame()
     {
-        //  Debug.Log(ELAPSEDTIME);
-        //時間切れになったら終了
-        //if (ELAPSEDTIME > LIMITTIME)
-        //{
-        //    
-        //    //Debug.Log("時間切れ");
-        //}
-
-    }
+		QuestUIFunc();
+	}
 
 	private void StartInGame()
 	{
+		//サブカメラ取得
+		SubCamera = GameObject.Find("MovieCamera").gameObject;
+		SubCamera.SetActive(false);
 
 		StartPos = _StartPos[Random.Range(0, _StartPos.Length)].transform;
 		//プレイヤー生産
@@ -387,7 +391,7 @@ public class GameManager : Singleton<GameManager>
 		PlayerSys = PlayerObj.GetComponent<PlayerCtrl>();
 
 		//リスタート
-		ResurrectionPanel = GameObject.Find("Canvas/Resurrect").gameObject;
+		ResurrectionPanel = GameObject.Find("MoveCanvas/Resurrect");
 		ReUI = ResurrectionPanel.transform.Find("Count").GetComponent<Text>();
 		UntilUI = ResurrectionPanel.transform.Find("Until").GetComponent<Text>();
 		_sli = ResurrectionPanel.transform.Find("RESlider").GetComponent<Slider>();
@@ -395,12 +399,20 @@ public class GameManager : Singleton<GameManager>
 		_sli.value = 0;
 		ReUI.text = "0%";
 
+		MovePanel = GameObject.Find("MoveCanvas/QuestPanel");
+		KillText = MovePanel.transform.Find("NumText").GetComponent<Text>();
+		KillText2 = MovePanel.transform.Find("NumText2").GetComponent<Text>();
+		tex = MovePanel.transform.Find("Text").GetComponent<Text>();
+		//テキスト関連
+		QuestUIFunc();
+
 		StartCoroutine("GameIsWinn");
 	}
 
 	IEnumerator REStartFunc(float RestratTime)
 	{
 		var waiting = new WaitForSeconds(0.1f);
+		SubCamera.SetActive(true);
 		while (true)
 		{
 			if (RE_timer >= RestratTime)
@@ -410,8 +422,8 @@ public class GameManager : Singleton<GameManager>
 				Destroy(PlayerObj);
 				//GameObject.Find("Canvas/Resurrect").gameObject.SetActive(false);
 				//プレイヤー生産
-				GameManager.Instantiate.PLAYEROBJ =
-					Instantiate(Instantiate.PLAYER, Instantiate.START_POS.position, Instantiate.START_POS.rotation);
+				PlayerObj =	Instantiate(Player, StartPos.position, StartPos.rotation);
+				SubCamera.SetActive(false);
 				yield break;
 			}
 			ReStartUI(RestratTime);
@@ -424,11 +436,29 @@ public class GameManager : Singleton<GameManager>
 	{
 		int e = Mathf.RoundToInt(MathPercentage(num, RE_timer));
 		_sli.value = e;
-		ReUI.text = e + "%";
+
+		sb.Append(e);
+		sb.Append("%");
+		ReUI.text = sb.ToString();
+		sb.Length = 0;
+
 		if (e >= 90)
 		{
 			UntilUI.text = "Ready?";
 		}
+	}
+
+	public void QuestUIFunc()
+	{
+		sb.Append(_Quest.KILL);
+		KillText.text = sb.ToString();
+		sb.Length = 0;
+		sb.Append(_Quest.BREAK);
+		KillText2.text = sb.ToString();
+		sb.Length = 0;
+		sb.Append(_Quest.F_TEXT);
+		tex.text = sb.ToString();
+		sb.Length = 0;
 	}
 
 	private float MathPercentage(float Max, float now)
@@ -462,26 +492,28 @@ public class GameManager : Singleton<GameManager>
 				killscore = 0;
 				killImportant = 0;
 				SceneManager.LoadScene("Menu");
+				
 				break;
 			case 1://テストステージ
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
-				_CurrentState = GameState.BATTLE;
+				_CurrentState = GameState.InGame;
 				SceneManager.LoadScene("Test");
-				WinnNum = 8;
+				//WinnNum = 8;
 				LimitTime = 150.0f;
 				ElapsedTime = 0;
-
+				_Quest = new Quest_Tutorial(0);
+				//Debug.Log(_Quest.KILL);
 				break;
-			case 2://実用ステージ
-				Cursor.visible = false;
-				Cursor.lockState = CursorLockMode.Locked;
-				_CurrentState = GameState.BREAK;
-				ElapsedTime = 0;
-				WinnNum = 1;
-				LimitTime = 150.0f;
-				SceneManager.LoadScene("HQBase");
-				break;
+			//case 2://実用ステージ
+			//	Cursor.visible = false;
+			//	Cursor.lockState = CursorLockMode.Locked;
+			//	_CurrentState = GameState.BREAK;
+			//	ElapsedTime = 0;
+			//	WinnNum = 1;
+			//	LimitTime = 150.0f;
+			//	SceneManager.LoadScene("HQBase");
+			//	break;
 			case 3://リザルト
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
@@ -493,20 +525,22 @@ public class GameManager : Singleton<GameManager>
 			case 4://ストーリー
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
-				_CurrentState = GameState.BREAK;
+				_CurrentState = GameState.InGame;
 				ElapsedTime = 0;
-				WinnNum = 1;
+				//WinnNum = 1;
 				LimitTime = 300.0f;
 				SceneManager.LoadScene("Story");
+				_Quest = new Quest_Stage1(0);
 				break;
 			case 5://ストーリー2
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
-				_CurrentState = GameState.BREAK;
+				_CurrentState = GameState.InGame;
 				ElapsedTime = 0;
-				WinnNum = 1;
-				LimitTime = 300.0f;
+				//WinnNum = 1;
+				LimitTime = 360.0f;
 				SceneManager.LoadScene("Story2");
+				_Quest = new Quest_Stage2(0);
 				break;
 		}
 		
@@ -526,58 +560,29 @@ public class GameManager : Singleton<GameManager>
 		var waiting = new WaitForSeconds(3.0f);
 		while (true)
 		{
-			switch (_CurrentState)
+			
+			if (_Quest.IsQuestClear())
 			{
-				case GameState.BATTLE:
-					//一定数撃破で勝利
-					if (Mathf.CeilToInt(WinnNum) <= GameManager.Instantiate.KILL)
-					{
-						GameManager.Instantiate.WIN = true;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-						//
-					}
-					//タイムオーバーで敗北
-					else if (GameManager.Instantiate.LIMITTIME <= GameManager.Instantiate.ELAPSEDTIME)
-					{
-						GameManager.Instantiate.WIN = false;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-					}
-					break;
-				case GameState.BREAK:
-					//特定の敵の撃破で勝利
-					if (Mathf.CeilToInt(WinnNum) <= GameManager.Instantiate.KILL_IMP)
-					{
-						GameManager.Instantiate.WIN = true;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-					}
-					//タイムオーバーで敗北
-					else if (GameManager.Instantiate.LIMITTIME <= GameManager.Instantiate.ELAPSEDTIME)
-					{
-						GameManager.Instantiate.WIN = false;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-					}
-					break;//
-				case GameState.DIFFENCE:
-					//タイムオーバーで勝利
-					if (Mathf.CeilToInt(WinnNum) <= GameManager.Instantiate.ELAPSEDTIME)
-					{
-						GameManager.Instantiate.WIN = true;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-					}
-					//特定の味方撃破で敗北
-					else if (GameManager.Instantiate.KILL_IMP >= 1)
-					{
-						GameManager.Instantiate.WIN = false;
-						GameManager.Instantiate.SceneChengeManager(3);
-						yield break;
-					}
-					break;
+				IsWinn = true;
+				SceneChengeManager(3);
+				yield break;
 			}
+			//タイムオーバーで敗北
+			else if (LimitTime <= ElapsedTime)
+			{
+				IsWinn = false;
+				SceneChengeManager(3);
+				yield break;
+			}
+			else
+			{
+				if (killImportant > 0)
+				{
+					_Quest.BREAK = 0;
+				}
+					
+			}
+			
 			yield return waiting;
 		}
 	}

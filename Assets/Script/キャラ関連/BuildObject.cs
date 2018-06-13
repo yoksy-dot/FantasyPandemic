@@ -28,12 +28,10 @@ public class BuildObject : BattleObject
 
 	int debugnum =0;
 
-	// Use this for initialization
-	protected override void Start () {
-		base.Start();
-	}
+	//protected override void Start () {
+	//	base.Start();
+	//}
 
-	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
 		timer2 += Time.deltaTime;
@@ -56,5 +54,16 @@ public class BuildObject : BattleObject
 		Vector2 xy = Random.insideUnitCircle * MakeDistance;
 		GameObject ene = _battleSystem.MakeObject(id, new Vector3(xy.x + transform.position.x, transform.position.y, xy.y + transform.position.z), transform.rotation,"Enemy_");
 		//GameObject ene = Instantiate(Prefabs, new Vector3(xy.x + transform.position.x, transform.position.y, xy.y + transform.position.z), transform.rotation);
+	}
+
+	protected override void DeathFunc()
+	{
+		base.DeathFunc();
+		
+	}
+
+	protected override void FirstDeathFunc()
+	{
+		GameManager.Instantiate._Quest.BREAK--;
 	}
 }

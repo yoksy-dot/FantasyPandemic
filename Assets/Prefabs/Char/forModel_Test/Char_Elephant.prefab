@@ -1814,7 +1814,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Important: 0
-  _Group: 0
   Bullet: {fileID: 1788867001218542, guid: 5f750cc6292b05b478ff435d8e2c8a6d, type: 2}
   ShootPoint: {fileID: 4779390185868352}
   IsRandomShoot: 0
@@ -1846,15 +1845,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9336094409981b4448e304a6739f6be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 300
-  Maxhp: 300
-  atk: 1
+  hp: 100
+  Maxhp: 100
+  atk: 10
   def: 0
   MaxBuulet: 30
   interval: 1
   Reload: 5
-  speed: 4
-  jump: 3
+  speed: 12
+  jump: 4
   spcial: 5
   Maxspcial: 20
   spcial_interval: 1

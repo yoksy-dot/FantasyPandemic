@@ -68,8 +68,7 @@ public class BombSystem : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.GetComponent<BattleObject>() != null &&
-			Attaker.GROUP != coll.gameObject.GetComponent<BattleObject>().GROUP)
+        if (coll.gameObject.GetComponent<BattleObject>() != null)
         {
 			//DamageCalculate dam = new DamageCalculate(Attaker, BombAtk, buff1, buff2);
 			//coll.gameObject.GetComponent<BattleObject>().ReceiveAttack(dam);

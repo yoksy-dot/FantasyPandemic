@@ -255,7 +255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Important: 1
-  _Group: 2
   Bullet: {fileID: 0}
   ShootPoint: {fileID: 0}
   IsRandomShoot: 0
@@ -268,11 +267,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _particleSystem: {fileID: 0}
-  UseMaker: 1
+  MakeNum: 0000000000000000
+  UseMaker: 0
   makeID: 0
-  Prefabs: {fileID: 1237397358744222, guid: 149745fd4d93f9848bed6f22dbb49c62, type: 2}
-  MakeDistance: 1
-  Interval: 8
+  Prefabs: {fileID: 1961276833649640, guid: 904f881b2b90c8740b4960da499beaa0, type: 2}
+  MakeDistance: 3
+  Interval: 1
   DebugMakeNum: 40
 --- !u!114 &114584480259949274
 MonoBehaviour:
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9336094409981b4448e304a6739f6be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5000
-  Maxhp: 5000
+  hp: 2000
+  Maxhp: 2000
   atk: 0
   def: 0
   MaxBuulet: 0

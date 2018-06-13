@@ -268,7 +268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Important: 0
-  _Group: 2
   Bullet: {fileID: 1439951046830512, guid: 4446ec1fa75d75c499733367aa7ae859, type: 2}
   ShootPoint: {fileID: 4277077345407630}
   IsRandomShoot: 0
@@ -300,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 15
   Maxhp: 15
-  atk: 0
+  atk: 1
   def: 0
   MaxBuulet: 0
   interval: 1
@@ -334,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4102a27825961ac46a4a0e219e441995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  what: 0
+  isPlayer: 1
 --- !u!135 &135711003587449784
 SphereCollider:
   m_ObjectHideFlags: 1

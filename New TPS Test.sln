@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test", "New TPS Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test.Plugins", "New TPS Test.Plugins.csproj", "{7769BE77-F035-EA5C-46A1-7FB6C9D87555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New TPS Test.Editor.Plugins", "New TPS Test.Editor.Plugins.csproj", "{F508F00F-694A-2224-3508-7D00B01B5865}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +19,6 @@ Global
 		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7769BE77-F035-EA5C-46A1-7FB6C9D87555}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F508F00F-694A-2224-3508-7D00B01B5865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F508F00F-694A-2224-3508-7D00B01B5865}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F508F00F-694A-2224-3508-7D00B01B5865}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F508F00F-694A-2224-3508-7D00B01B5865}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

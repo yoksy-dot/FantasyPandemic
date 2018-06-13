@@ -31,6 +31,8 @@ public class Bullet_Beam : BulletClass
     private bool StopFlag = false;
 
 	private Transform T_me;
+	[SerializeField]
+	private GameObject Light;
 
 
 	private void Awake()
@@ -47,6 +49,7 @@ public class Bullet_Beam : BulletClass
 		ray = new Ray(transform.position, transform.forward);
 		posa = transform.position;//頭
 		posb = transform.position;//尾
+		Light.transform.position = posa;
 	}
 
     // Update is called once per frame
@@ -56,8 +59,13 @@ public class Bullet_Beam : BulletClass
 
 		Shot();
 
-		if(!StopFlag)
-		posa += transform.forward * BeamSpeed;
+		if (!StopFlag)
+		{
+			posa += transform.forward * BeamSpeed;
+			Light.transform.position = posa;
+
+		}
+			
 		if (timer2 >= zure)
 			posb += transform.forward * BeamSpeed;
 

@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Secne/Result.unity
     guid: 7fb77556fa8775944bb4262e6e11bd8e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Secne/HQBase.unity
     guid: 50c842144eaf4df498e80fc5d3657ce3
   - enabled: 1

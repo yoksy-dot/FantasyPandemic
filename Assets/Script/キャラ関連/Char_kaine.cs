@@ -14,6 +14,8 @@ public class Char_kaine : Char_Grenade
 
 	[SerializeField]
 	private ParticleSystem _p2, _p3, _p4;
+	[SerializeField]
+	private Light[] lights = new Light[4];
 
 	protected override void Start()
 	{
@@ -79,8 +81,8 @@ public class Char_kaine : Char_Grenade
 			AnimCtrl[0].SetBool("Run", true);
 			AnimCtrl[1].SetBool("Walk", true);
 			AnimCtrl[1].SetBool("Run", false);
-			
-			
+
+
 		}
 
 		if (Input.GetKeyDown(KeyCode.Q))
@@ -90,15 +92,43 @@ public class Char_kaine : Char_Grenade
 			_p3.Play(true);
 			_p4.Play(true);
 		}
-		else if(Input.GetKeyUp(KeyCode.Q))
+		else if (Input.GetKeyUp(KeyCode.Q))
 		{
 			_particleSystem.Stop();
 			_p2.Stop();
 			_p3.Stop();
 			_p4.Stop();
 		}
-	}
+		//明かり用
+		if (Input.GetKey(KeyCode.Q))
+		{
+			if (lights[0].intensity < 8)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					lights[i].intensity += 0.2f;
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					lights[i].intensity = Random.Range(8.0f, 10.0f);
+				}
+			}
+		}
+		else
+		{
+			if (lights[0].intensity > 0)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					lights[i].intensity -= 0.4f;
 
+				}
+			}
+		}
+	}
 	protected override void DeathFunc()
 	{
 		base.DeathFunc();

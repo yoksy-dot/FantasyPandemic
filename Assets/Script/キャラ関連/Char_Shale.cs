@@ -26,6 +26,9 @@ public class Char_Shale : Player_FlyingType
 	[SerializeField]
 	private TrailRenderer T_r1, T_r2;
 
+	[SerializeField]
+	private Light _Light, _Light2;
+
 	protected override void PlayerMove()
 	{
 		float F_Flag = 0;
@@ -55,6 +58,12 @@ public class Char_Shale : Player_FlyingType
 				{
 					F_Flag = 1;
 					AnimCtrl[0].SetBool("Jump", true);
+					if (_Light.intensity < 5.0f)
+					{
+						_Light.intensity += 0.5f;
+						_Light2.intensity += 0.5f;
+					}
+						
 				}
 
 			}
@@ -83,6 +92,12 @@ public class Char_Shale : Player_FlyingType
 					F_Flag = 1;
 					AnimCtrl[0].SetBool("Fly", true);
 				}
+				if (_Light.intensity < 5.0f)
+				{
+					_Light.intensity += 0.5f;
+					_Light2.intensity += 0.5f;
+				}
+					
 				_particleSystem.Play(true);
 
 			}
@@ -90,6 +105,12 @@ public class Char_Shale : Player_FlyingType
 			{
 				F_Flag = 5;
 				AnimCtrl[0].SetBool("Fly", false);//落下中
+				if (_Light.intensity > 0.0f)
+				{
+					_Light.intensity -= 0.5f;
+					_Light2.intensity -= 0.5f;
+				}
+					
 				_particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 			}
 				

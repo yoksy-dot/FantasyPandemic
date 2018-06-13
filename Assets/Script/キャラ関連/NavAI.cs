@@ -20,9 +20,9 @@ public class NavAI : MonoBehaviour {
 	private int destPoint = 0;
 	bool eflag = false;
 
-    public void SetTarget(GameObject Target)
+    public void SetTarget(Vector3 Target)
     {
-        _nav.SetDestination(Target.transform.position);
+        _nav.SetDestination(Target);
     }
 
     public void GotoNextPoint(List<GameObject> points)

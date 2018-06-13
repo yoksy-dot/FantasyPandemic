@@ -17,20 +17,20 @@ public class BattleObject : MonoBehaviour
 	[SerializeField, Tooltip("撃破条件の物")]
 	protected bool Important;
 
-	public enum Group
-	{
-		RED,
-		BULE,
-		NPC,
-		RED_BUILD,
-		BULE_BUILD
-	}
-	[SerializeField]
-	private Group _Group;
-	public Group GROUP
-	{
-		get { return _Group; }
-	}
+	//public enum Group
+	//{
+	//	RED,
+	//	BULE,
+	//	NPC,
+	//	RED_BUILD,
+	//	BULE_BUILD
+	//}
+	//[SerializeField]
+	//private Group _Group;
+	//public Group GROUP
+	//{
+	//	get { return _Group; }
+	//}
 
 	protected Parameter _parameter = new Parameter();//ステータス
 	public Parameter PARAMETER
@@ -96,6 +96,14 @@ public class BattleObject : MonoBehaviour
 	protected int[] Current_B = new int[2];
 	protected StringBuilder sb2 = new StringBuilder();
 	private int[] _id = new int[2];
+
+	//死亡関数が一回だけ呼ばれるようにするためのフラグ
+	protected bool deathFlag = false;
+
+	protected virtual void OnEnable()
+	{
+		deathFlag = false;
+	}
 
 	private void Awake()
 	{
@@ -185,7 +193,13 @@ public class BattleObject : MonoBehaviour
 
 		if (_parameter.HP <= 0)
 		{
+			//deathFlag = true;
 			DeathFunc();
+			if (!deathFlag)
+			{
+				deathFlag = true;
+				FirstDeathFunc();
+			}
 		}
 	}
 
@@ -200,6 +214,14 @@ public class BattleObject : MonoBehaviour
 		StopCoroutine("ApplyReceiveBuff");
 		AwakeBuff_HP.Clear();
 		AwakeBuff_N.Clear();
+
+		//GameManager.Instantiate.QuestUIFunc();
+	}
+
+	//一度だけしか呼ばれたくない物
+	protected virtual void FirstDeathFunc()
+	{
+
 	}
 
 

@@ -12,26 +12,25 @@ public class SeachSystem : MonoBehaviour {
         get { return Found; }
     }
 
-    private GameObject Target;
-    public GameObject TARGET
-    {
-        get { return Target; }
-    }
+	private Vector3 target;
+	public Vector3 TARGET {
+		get { return target; }
+		set { target = value; }
+	}
 
-    public enum SeachType
-    {
-        Player,
-        Enemy
-    }
 
-    public SeachType what;
-    private GameObject pre_Obj;
+	private GameObject pp;
+	//public enum SeachType
+	//{
+	//    Player,
+	//    Enemy
+	//}
+	[Tooltip("Playerの創作ならTrueに")]
+	public bool isPlayer;
+
+   // public SeachType what;
     private float timer = 0.0f , interval = 2.0f;
 
-	//// Update is called once per frame
-	//void Update () {
-
-	//}
 
 	void FixedUpdate()
 	{
@@ -43,31 +42,30 @@ public class SeachSystem : MonoBehaviour {
 
 	void OnTriggerStay(Collider coll)
     {
-		if (timer >= interval && coll.gameObject == pre_Obj)
+		if (timer <= interval)
 		{
 			return;
 		}
-			
+
 		timer = 0;
-        switch (what)
-        {
-            case SeachType.Player:
-                if (coll.gameObject.tag == "Player")
-                {
-                    Target = coll.gameObject;
-                    Found = true;
-                }
-                break;
-            case SeachType.Enemy:
-                if (coll.gameObject.tag == "Enemy")
-                {
-                    Target = coll.gameObject;
-                    Found = true;
-                }
-                break;
-        }
-		pre_Obj = coll.gameObject;
-    }
+
+		if (isPlayer)
+		{
+			if (coll.gameObject.tag == "Player")
+			{
+				target = coll.transform.position;//GCAllocの原因
+				Found = true;
+			}
+		}
+		else
+		{
+			if (coll.gameObject.tag == "Enemy")
+			{
+				target = coll.transform.position;
+				Found = true;
+			}
+		}
+	}
 
     void OnTriggerExit(Collider coll)
     {
@@ -77,7 +75,7 @@ public class SeachSystem : MonoBehaviour {
         }
     }
 
-	public void ClearFunc()
+	private void ClearFunc()
 	{
 		Found = false;
 	}

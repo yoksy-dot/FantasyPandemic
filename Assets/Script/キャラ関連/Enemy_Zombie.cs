@@ -26,6 +26,13 @@ public class Enemy_Zombie : EnemyClass
 			}
 			
 		}
+		
+		//GameManager.Instantiate.QuestUIFunc();
+	}
+
+	protected override void FirstDeathFunc()
+	{
+		GameManager.Instantiate._Quest.KILL--;
 	}
 
 	//移動時に呼ばれる

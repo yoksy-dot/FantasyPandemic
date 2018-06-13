@@ -84,7 +84,7 @@ public class EnemyClass : BattleObject
         {
 			if (useLook)
 			{
-				Vector3 vec = _seach.TARGET.transform.localPosition;//移動
+				Vector3 vec = _seach.TARGET;//移動
 				ShootPoint.transform.LookAt(RandomShooterFunc(vec)); 
 			}
 			if (Bullet)
@@ -100,7 +100,7 @@ public class EnemyClass : BattleObject
             {
                 if (useLook)
 				{
-					Vector3 vec = _seach.TARGET.transform.localPosition;//移動
+					Vector3 vec = _seach.TARGET;//移動
 					ShootPoint.transform.LookAt(RandomShooterFunc(vec));
 				}
 				//MakeBullet(SecondBullet[i], SecondShootPoint[i].transform);
@@ -121,7 +121,7 @@ public class EnemyClass : BattleObject
                 if (_seach.FOUND)
                 {
                     _navAI.AgentMoveBoolFunc(false);
-                    Tar_Vec = _seach.TARGET.transform.localPosition - transform.localPosition;
+                    Tar_Vec = _seach.TARGET - transform.localPosition;
                     transform.rotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Tar_Vec), Time.deltaTime * Random.Range(0, _parameter.SPEED));
                     
                 }
@@ -141,7 +141,7 @@ public class EnemyClass : BattleObject
                     _navAI.SetTarget(_seach.TARGET);
                     if(_navAI.NAV.remainingDistance > ChaseDis)//ターゲットまでの距離が開きすぎている
                         _navAI.GotoNextPoint(MovePoint);
-                    Tar_Vec = _seach.TARGET.transform.localPosition - transform.localPosition;
+                    Tar_Vec = _seach.TARGET - transform.localPosition;
                     transform.rotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Tar_Vec), Time.deltaTime * Random.Range(0, _parameter.SPEED));
 				}
                 //プレイヤー未発見
@@ -162,7 +162,7 @@ public class EnemyClass : BattleObject
 						_navAI.RandomAI();
 						break;
 					}
-					Tar_Vec = _seach.TARGET.transform.localPosition - transform.localPosition;
+					Tar_Vec = _seach.TARGET - transform.localPosition;
 					transform.rotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Tar_Vec), Time.deltaTime * Random.Range(0, _parameter.SPEED));
 				}
 				else if (!_seach.FOUND)

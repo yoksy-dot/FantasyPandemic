@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,8 +65,9 @@ public class PlayerCtrl : BattleObject
     private int RemainingBullet;
     private float timer2 = 0,SPtimer = 0;
 
-    //UIここから
-    private GameObject InfoPanel;//情報パネル
+	//UIここから
+	private GameObject MoveCanvas, NonMoveCanvas;
+    private GameObject InfoPanel, nonInfoPanel;//情報パネル
     //private GameObject BulletPanle;
     private Text HPText, SPText, SPText2, Name, /*WeaponName,*/ BulletNum;//テキスト取得
     private Slider HPSlider, SPSlider, BulletNumSlider;//スライダー取得
@@ -78,7 +80,7 @@ public class PlayerCtrl : BattleObject
 	protected bool ShootFlag, ShootFlag2,DeathFlag=false;
     private bool RelaodTime = false;
 
-
+	private StringBuilder sb = new StringBuilder();
 
 	//SPECIAL
 	[SerializeField,Tooltip("Qで発生するバフ")]
@@ -106,8 +108,13 @@ public class PlayerCtrl : BattleObject
             Gun = transform.Find("Model/Gun").gameObject;
 		RandTarget = GunTarget.transform.Find("Object").transform;//代入
 
-        InfoPanel = GameObject.Find("Canvas/InfoPanel");
-        Name = InfoPanel.transform.Find("Name").GetComponent<Text>();
+		MoveCanvas = GameObject.Find("MoveCanvas");
+		NonMoveCanvas = GameObject.Find("NonMoveCanvas");
+
+		InfoPanel = MoveCanvas.transform.Find("InfoPanel").gameObject;
+		nonInfoPanel = NonMoveCanvas.transform.Find("InfoPanel").gameObject;
+
+		Name = nonInfoPanel.transform.Find("Name").GetComponent<Text>();
         HPText = InfoPanel.transform.Find("HPText").GetComponent<Text>();
         SPText = InfoPanel.transform.Find("SPText").GetComponent<Text>();
 		SPText2 = InfoPanel.transform.Find("SPText2").GetComponent<Text>();
@@ -119,7 +126,7 @@ public class PlayerCtrl : BattleObject
         BulletNum = InfoPanel.transform.Find("Bullet Text").GetComponent<Text>();
         BulletNumSlider = InfoPanel.transform.Find("ReloadSlider").GetComponent<Slider>();
 		//リスタート
-		ResurrectionPanel = GameObject.Find("Canvas/Resurrect").gameObject;
+		ResurrectionPanel = MoveCanvas.transform.Find("Resurrect").gameObject;
 		ResurrectionPanel.SetActive(false);
 
 		CameraStartPos = myCamera.localPosition;
@@ -266,23 +273,36 @@ public class PlayerCtrl : BattleObject
         int a = Mathf.RoundToInt(MathPercentage(_parameter.MAXHP, _parameter.HP));
         int b = Mathf.RoundToInt(MathPercentage(_parameter.MAXSPECIAL, _parameter.SPECIAL));
         Name.text = gameObject.name;
-        HPText.text = a + "%";
-        HPSlider.value = a;
-		SPText2.text = _parameter.SPECIAL + "/" + _parameter.MAXSPECIAL;
+
+		sb.Append(a);
+		sb.Append("%");
+		HPText.text = sb.ToString();
+		sb.Length = 0;//初期化
+
+		HPSlider.value = a;
+
+		sb.Append(_parameter.SPECIAL);
+		sb.Append("/");
+		sb.Append(_parameter.MAXSPECIAL);
+		SPText2.text = sb.ToString();
+		sb.Length = 0;
+
 		SPSlider.value = b;
 
         int c = Mathf.RoundToInt(MathPercentage(_parameter.MAXBULLET, RemainingBullet));
-      //  WeaponName.text = "ﾒｲﾝ:前方に弾丸を連射する\n" +
-						//"ｻﾌﾞ:真下に爆弾を二つ落すSP40\n" +
-						//"備考:SP消費で飛行可能";
         if (RelaodTime == false)
         {
-            BulletNum.text = RemainingBullet + "/" + _parameter.MAXBULLET;
-            BulletNumSlider.value = c;
+			sb.Append(RemainingBullet);
+			sb.Append("/");
+			sb.Append(_parameter.MAXBULLET);
+			BulletNum.text = sb.ToString();
+			sb.Length = 0;
+
+			BulletNumSlider.value = c;
         }
         else
         {
-            BulletNum.text = "リロード中!";
+            BulletNum.text = "Reload!";
             int d = Mathf.RoundToInt(MathPercentage(_parameter.RELOAD, timer2));
             BulletNumSlider.value = d;
         }

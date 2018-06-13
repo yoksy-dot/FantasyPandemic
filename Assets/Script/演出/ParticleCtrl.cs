@@ -7,6 +7,11 @@ public class ParticleCtrl : MonoBehaviour {
 	[SerializeField]
 	private ParticleSystem particle;
 
+	private void OnEnable()
+	{
+		StartCoroutine("ParticleWorking");
+	}
+
 	IEnumerator ParticleWorking()
 	{
 		yield return new WaitWhile(() => particle.IsAlive(true));
